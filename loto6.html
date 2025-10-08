@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ロト6予想</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 2em; }
+    button { padding: 1em; font-size: 1.2em; }
+    .result { margin-top: 1em; font-size: 1.5em; }
+  </style>
+</head>
+<body>
+  <h1>🎯 ロト6予想（3点）</h1>
+  <button onclick="generate()">予想する</button>
+  <div class="result" id="output"></div>
+
+  <script>
+    function generateSet() {
+      const nums = [];
+      while (nums.length < 6) {
+        const n = Math.floor(Math.random() * 43) + 1;
+        if (!nums.includes(n)) nums.push(n);
+      }
+      return nums.sort((a, b) => a - b).join('・');
+    }
+
+    function generate() {
+      const sets = [generateSet(), generateSet(), generateSet()];
+      document.getElementById('output').innerHTML =
+        sets.map((s, i) => `【${i + 1}】 ${s}`).join('<br>');
+    }
+  </script>
+</body>
+</html>
